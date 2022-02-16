@@ -9,10 +9,11 @@ type BaseRouter struct {
 }
 
 func (b *BaseRouter) InitBaseRouter(r *gin.RouterGroup) (R gin.IRoutes) {
-	baseRouterGropu := r.Group("base")
+	baseRouterGroup := r.Group("base")
+	// baseGropu
 	var _ = api.ApiGroupApp.UserGroup
 	{
 
 	}
-	return baseRouterGropu
+	return baseRouterGroup
 }
