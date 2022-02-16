@@ -2,7 +2,7 @@ package login
 
 import (
 	"goweb-gin-gorm/constant"
-	"goweb-gin-gorm/db"
+	"goweb-gin-gorm/global"
 	"goweb-gin-gorm/model"
 	"goweb-gin-gorm/response"
 )
@@ -25,7 +25,7 @@ func (service *UserRegisterService) valid() *response.Response {
 	}
 
 	count := int64(0)
-	db.DB.Model(&model.User{}).Where("nickname = ?", service.Nickname).Count(&count)
+	global.GlobalDb.Model(&model.User{}).Where("nickname = ?", service.Nickname).Count(&count)
 	if count > 0 {
 		return &response.Response{
 			Code: 40001,
@@ -34,7 +34,7 @@ func (service *UserRegisterService) valid() *response.Response {
 	}
 
 	count = 0
-	db.DB.Model(&model.User{}).Where("user_name = ?", service.UserName).Count(&count)
+	global.GlobalDb.Model(&model.User{}).Where("user_name = ?", service.UserName).Count(&count)
 	if count > 0 {
 		return &response.Response{
 			Code: 40001,
@@ -68,7 +68,7 @@ func (service *UserRegisterService) Register() response.Response {
 	}
 
 	// 创建用户
-	if err := db.DB.Create(&user).Error; err != nil {
+	if err := global.GlobalDb.Create(&user).Error; err != nil {
 		return response.ParamErr("注册失败", err)
 	}
 	return model.BuildUserResponse(user)

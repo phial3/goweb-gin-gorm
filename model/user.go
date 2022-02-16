@@ -2,7 +2,7 @@ package model
 
 import (
 	"goweb-gin-gorm/constant"
-	"goweb-gin-gorm/db"
+	"goweb-gin-gorm/global"
 	"goweb-gin-gorm/response"
 	"strconv"
 	"time"
@@ -54,7 +54,7 @@ func BuildUserResponse(user User) response.Response {
 // GetUser 用ID获取用户
 func GetUser(ID interface{}) (User, error) {
 	var user User
-	result := db.DB.First(&user, ID)
+	result := global.GlobalDb.First(&user, ID)
 	return user, result.Error
 }
 
@@ -82,7 +82,7 @@ func (user *User) UserID() string {
 // MakeToken 生成token
 func (user *User) MakeToken() (string, int64, error) {
 	// 移动端生成token, 2周自动过期
-	token := util.RandStringRunes(15)
+	token := util.RandomString(15)
 	exp := 14 * 24 * time.Hour
 	tokenExpire := time.Now().Add(exp).Unix()
 	if err := cache.SaveUserToken(token, user.UserID(), exp); err != nil {

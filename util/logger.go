@@ -2,19 +2,9 @@ package util
 
 import (
 	"fmt"
+	"goweb-gin-gorm/constant"
 	"os"
 	"time"
-)
-
-const (
-	// LevelError 错误
-	LevelError = iota
-	// LevelWarning 警告
-	LevelWarning
-	// LevelInformational 提示
-	LevelInformational
-	// LevelDebug 除错
-	LevelDebug
 )
 
 var logger *Logger
@@ -31,7 +21,7 @@ func (ll *Logger) Println(msg string) {
 
 // Panic 极端错误
 func (ll *Logger) Panic(format string, v ...interface{}) {
-	if LevelError > ll.level {
+	if constant.LevelError > ll.level {
 		return
 	}
 	msg := fmt.Sprintf("[Panic] "+format, v...)
@@ -41,7 +31,7 @@ func (ll *Logger) Panic(format string, v ...interface{}) {
 
 // Error 错误
 func (ll *Logger) Error(format string, v ...interface{}) {
-	if LevelError > ll.level {
+	if constant.LevelError > ll.level {
 		return
 	}
 	msg := fmt.Sprintf("[E] "+format, v...)
@@ -50,7 +40,7 @@ func (ll *Logger) Error(format string, v ...interface{}) {
 
 // Warning 警告
 func (ll *Logger) Warning(format string, v ...interface{}) {
-	if LevelWarning > ll.level {
+	if constant.LevelWarning > ll.level {
 		return
 	}
 	msg := fmt.Sprintf("[W] "+format, v...)
@@ -59,7 +49,7 @@ func (ll *Logger) Warning(format string, v ...interface{}) {
 
 // Info 信息
 func (ll *Logger) Info(format string, v ...interface{}) {
-	if LevelInformational > ll.level {
+	if constant.LevelInformational > ll.level {
 		return
 	}
 	msg := fmt.Sprintf("[I] "+format, v...)
@@ -68,7 +58,7 @@ func (ll *Logger) Info(format string, v ...interface{}) {
 
 // Debug 校验
 func (ll *Logger) Debug(format string, v ...interface{}) {
-	if LevelDebug > ll.level {
+	if constant.LevelDebug > ll.level {
 		return
 	}
 	msg := fmt.Sprintf("[D] "+format, v...)
@@ -77,16 +67,16 @@ func (ll *Logger) Debug(format string, v ...interface{}) {
 
 // BuildLogger 构建logger
 func BuildLogger(level string) {
-	intLevel := LevelError
+	intLevel := constant.LevelError
 	switch level {
 	case "error":
-		intLevel = LevelError
+		intLevel = constant.LevelError
 	case "warning":
-		intLevel = LevelWarning
+		intLevel = constant.LevelWarning
 	case "info":
-		intLevel = LevelInformational
+		intLevel = constant.LevelInformational
 	case "debug":
-		intLevel = LevelDebug
+		intLevel = constant.LevelDebug
 	}
 	l := Logger{
 		level: intLevel,
@@ -98,7 +88,7 @@ func BuildLogger(level string) {
 func Log() *Logger {
 	if logger == nil {
 		l := Logger{
-			level: LevelDebug,
+			level: constant.LevelDebug,
 		}
 		logger = &l
 	}

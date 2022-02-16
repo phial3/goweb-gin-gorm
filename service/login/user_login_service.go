@@ -3,7 +3,7 @@ package login
 import (
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
-	"goweb-gin-gorm/db"
+	"goweb-gin-gorm/global"
 )
 
 import (
@@ -30,7 +30,7 @@ func (service *UserLoginService) setSession(c *gin.Context, user model.User) {
 func (service *UserLoginService) Login(c *gin.Context) response.Response {
 	var user model.User
 
-	if err := db.DB.Where("user_name = ?", service.UserName).First(&user).Error; err != nil {
+	if err := global.GlobalDb.Where("user_name = ?", service.UserName).First(&user).Error; err != nil {
 		return response.ParamErr("账号或密码错误", nil)
 	}
 

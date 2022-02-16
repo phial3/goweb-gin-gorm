@@ -1,36 +1,23 @@
 package cache
 
 import (
-	"os"
-	"strconv"
+	"github.com/go-redis/redis/v8"
 )
 
 import (
-	"github.com/go-redis/redis"
+	"goweb-gin-gorm/global"
 )
-
-import (
-	"goweb-gin-gorm/util"
-)
-
-// RedisClient Redis缓存客户端单例
-var RedisClient *redis.Client
 
 // Redis 在中间件中初始化redis链接
-func Redis() {
-	db, _ := strconv.ParseUint(os.Getenv("REDIS_DB"), 10, 64)
+func Redis() *redis.Client {
+	redisConf := global.GlobalConfig.Redis
+
 	client := redis.NewClient(&redis.Options{
-		Addr:       os.Getenv("REDIS_ADDR"),
-		Password:   os.Getenv("REDIS_PW"),
-		DB:         int(db),
+		Addr:       redisConf.Addr,
+		Password:   redisConf.Password,
+		DB:         redisConf.DB,
 		MaxRetries: 1,
 	})
 
-	_, err := client.Ping().Result()
-
-	if err != nil {
-		util.Log().Panic("连接Redis不成功", err)
-	}
-
-	RedisClient = client
+	return client
 }

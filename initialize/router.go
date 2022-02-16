@@ -2,9 +2,9 @@ package initialize
 
 import (
 	"github.com/gin-gonic/gin"
+	"goweb-gin-gorm/global"
 	"goweb-gin-gorm/middleware"
 	"goweb-gin-gorm/router"
-	"goweb-gin-gorm/util"
 	"os"
 )
 
@@ -38,7 +38,7 @@ func Routers() *gin.Engine {
 		routerGroup.InitUserRouter(privateGroup)
 	}
 
-	util.Log().Info("router register success")
+	global.GlobalLog.Info("router register success!")
 
 	return r
 }

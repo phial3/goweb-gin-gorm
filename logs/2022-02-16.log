@@ -1,0 +1,17 @@
+[goweb-demo]2022-0216 - 21:20:55.913	[34minfo[0m	/Users/gaoyanfei3/GolandProjects/goweb-gin-gorm/initialize/router.go:41	router register success!
+
+[goweb-demo]2022-0216 - 21:20:55.913	[34minfo[0m	/Users/gaoyanfei3/GolandProjects/goweb-gin-gorm/core/server.go:38	server run success on 	{"address": ":8890"}
+[goweb-demo]2022-0216 - 21:21:16.446	[31merror[0m	/Users/gaoyanfei3/GolandProjects/goweb-gin-gorm/core/server.go:39	accept tcp [::]:8890: use of closed network connection
+[goweb-demo]2022-0216 - 21:21:18.779	[34minfo[0m	/Users/gaoyanfei3/GolandProjects/goweb-gin-gorm/initialize/router.go:41	router register success!
+[goweb-demo]2022-0216 - 21:21:18.780	[34minfo[0m	/Users/gaoyanfei3/GolandProjects/goweb-gin-gorm/core/server.go:38	server run success on 	{"address": ":8890"}
+[goweb-demo]2022-0216 - 21:42:39.572	[31merror[0m	/Users/gaoyanfei3/GolandProjects/goweb-gin-gorm/core/server.go:39	accept tcp [::]:8890: use of closed network connection
+[goweb-demo]2022-0216 - 21:42:44.102	[34minfo[0m	/Users/gaoyanfei3/GolandProjects/goweb-gin-gorm/initialize/router.go:41	router register success!
+[goweb-demo]2022-0216 - 21:42:44.102	[34minfo[0m	/Users/gaoyanfei3/GolandProjects/goweb-gin-gorm/core/server.go:40	server run success on 	{"address": ":8890"}
+[goweb-demo]2022-0216 - 21:42:48.235	[31merror[0m	/Users/gaoyanfei3/GolandProjects/goweb-gin-gorm/core/server.go:41	accept tcp [::]:8890: use of closed network connection
+[goweb-demo]2022-0216 - 21:57:48.145	[34minfo[0m	/Users/gaoyanfei3/GolandProjects/goweb-gin-gorm/initialize/router.go:41	router register success!
+[goweb-demo]2022-0216 - 21:57:48.146	[34minfo[0m	/Users/gaoyanfei3/GolandProjects/goweb-gin-gorm/core/server.go:40	server run success on 	{"address": ":8890"}
+[goweb-demo]2022-0216 - 21:57:58.925	[31merror[0m	/Users/gaoyanfei3/GolandProjects/goweb-gin-gorm/core/server.go:41	accept tcp [::]:8890: use of closed network connection
+[goweb-demo]2022-0216 - 22:22:21.902	[31merror[0m	/Users/gaoyanfei3/GolandProjects/goweb-gin-gorm/db/database.go:30	MySQL init error!	{"err": "Error 1049: Unknown database 'db_test'"}
+[goweb-demo]2022-0216 - 22:24:38.191	[34minfo[0m	/Users/gaoyanfei3/GolandProjects/goweb-gin-gorm/initialize/router.go:41	router register success!
+[goweb-demo]2022-0216 - 22:24:38.193	[34minfo[0m	/Users/gaoyanfei3/GolandProjects/goweb-gin-gorm/core/server.go:42	server run success on 	{"address": ":8890"}
+[goweb-demo]2022-0216 - 22:30:17.023	[31merror[0m	/Users/gaoyanfei3/GolandProjects/goweb-gin-gorm/core/server.go:43	accept tcp [::]:8890: use of closed network connection

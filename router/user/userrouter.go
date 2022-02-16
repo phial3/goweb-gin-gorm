@@ -21,14 +21,14 @@ func (s *UserRouter) InitUserRouter(r *gin.RouterGroup) (R gin.IRoutes) {
 	var userApi = api.ApiGroupApp.UserGroup.UserApi
 	{
 		// 用户注册
-		userGroup.POST("user/register", userApi.UserRegister)
+		userGroup.POST("register", userApi.UserRegister)
 		// 用户登录
-		userGroup.POST("user/login", userApi.UserLogin)
+		userGroup.POST("login", userApi.UserLogin)
 		// User Routing
-		userGroup.GET("user/detail", userApi.UserDetail)
-		userGroup.DELETE("user/logout", userApi.UserLogout)
+		userGroup.GET("detail", userApi.UserDetail)
+		userGroup.DELETE("logout", userApi.UserLogout)
 		// 用户刷新token
-		userGroup.POST("user/refresh", userApi.UserTokenRefresh)
+		userGroup.POST("refresh", userApi.UserTokenRefresh)
 	}
 	return userGroup
 }
