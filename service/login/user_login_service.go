@@ -1,4 +1,4 @@
-package service
+package login
 
 import (
 	"github.com/gin-contrib/sessions"
@@ -57,4 +57,9 @@ func (service *UserLoginService) Login(c *gin.Context) response.Response {
 	return response.Response{
 		Data: data,
 	}
+}
+
+// Logout 注销操作，清除session
+func (service *UserLoginService) Logout(c *gin.Context) response.Response {
+	return response.Response{}
 }

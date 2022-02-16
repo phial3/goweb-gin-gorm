@@ -1,4 +1,4 @@
-package api
+package apiuser
 
 import (
 	"github.com/gin-contrib/sessions"
@@ -9,15 +9,9 @@ import (
 import (
 	"goweb-gin-gorm/cache"
 	"goweb-gin-gorm/response"
-	"goweb-gin-gorm/service"
 )
 
-// Ping 状态检查页面
-func Ping(c *gin.Context) {
-	c.JSON(200, response.Response{
-		Code: 0,
-		Msg:  "Ping",
-	})
+type UserApi struct {
 }
 
 // CurrentUser 获取当前用户
@@ -31,10 +25,9 @@ func CurrentUser(c *gin.Context) *model.User {
 }
 
 // UserRegister 用户注册接口
-func UserRegister(c *gin.Context) {
-	var registerService service.UserRegisterService
-	if err := c.ShouldBind(&registerService); err == nil {
-		res := registerService.Register()
+func (u *UserApi) UserRegister(c *gin.Context) {
+	if err := c.ShouldBind(&userRegisterService); err == nil {
+		res := userRegisterService.Register()
 		c.JSON(200, res)
 	} else {
 		c.JSON(200, response.ErrorResponse(err))
@@ -42,10 +35,9 @@ func UserRegister(c *gin.Context) {
 }
 
 // UserLogin 用户登录接口
-func UserLogin(c *gin.Context) {
-	var loginService service.UserLoginService
-	if err := c.ShouldBind(&loginService); err == nil {
-		res := loginService.Login(c)
+func (u *UserApi) UserLogin(c *gin.Context) {
+	if err := c.ShouldBind(&userLoginService); err == nil {
+		res := userLoginService.Login(c)
 		c.JSON(200, res)
 	} else {
 		c.JSON(200, response.ErrorResponse(err))
@@ -53,22 +45,21 @@ func UserLogin(c *gin.Context) {
 }
 
 // UserTokenRefresh 用户刷新token接口
-func UserTokenRefresh(c *gin.Context) {
+func (u *UserApi) UserTokenRefresh(c *gin.Context) {
 	user := CurrentUser(c)
-	var refreshService service.UserTokenRefreshService
-	res := refreshService.Refresh(c, user)
+	res := userTokenRefreshService.Refresh(c, user)
 	c.JSON(200, res)
 }
 
-// UserMe 用户详情
-func UserMe(c *gin.Context) {
+// UserDetail 用户详情
+func (u *UserApi) UserDetail(c *gin.Context) {
 	user := CurrentUser(c)
 	res := model.BuildUserResponse(*user)
 	c.JSON(200, res)
 }
 
 // UserLogout 用户登出
-func UserLogout(c *gin.Context) {
+func (u *UserApi) UserLogout(c *gin.Context) {
 	// 移动端登出
 	token := c.GetHeader("X-Token")
 	if token != "" {
