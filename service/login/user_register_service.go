@@ -60,7 +60,7 @@ func (service *UserRegisterService) Register() response.Response {
 
 	// 加密密码
 	if err := user.SetPassword(service.Password); err != nil {
-		return response.Err(
+		return response.ErrorResponse(
 			constant.CodeEncryptError,
 			"密码加密失败",
 			err,
@@ -69,7 +69,7 @@ func (service *UserRegisterService) Register() response.Response {
 
 	// 创建用户
 	if err := global.GlobalDb.Create(&user).Error; err != nil {
-		return response.ParamErr("注册失败", err)
+		return response.ParamErr(-1, "注册失败", err)
 	}
 	return model.BuildUserResponse(user)
 }

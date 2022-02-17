@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"goweb-gin-gorm/global"
 	"goweb-gin-gorm/middleware"
+	"goweb-gin-gorm/response"
 	"goweb-gin-gorm/router"
 	"os"
 )
@@ -22,9 +23,7 @@ func Routers() *gin.Engine {
 	publicGroup := r.Group("")
 	{
 		// 健康监测
-		publicGroup.GET("/health", func(c *gin.Context) {
-			c.JSON(200, "ok")
-		})
+		publicGroup.GET("/health", func(c *gin.Context) { response.Ok(c) })
 	}
 	{
 		routerGroup.InitBaseRouter(publicGroup)
@@ -33,7 +32,7 @@ func Routers() *gin.Engine {
 	// private
 	privateGroup := r.Group("")
 	//路由要经过jwt和cas校验
-	privateGroup.Use(middleware.AuthRequired())
+	privateGroup.Use(middleware.AuthRequired()).Use(middleware.JWTAuth()).Use(middleware.CasbinHandler())
 	{
 		routerGroup.InitUserRouter(privateGroup)
 	}

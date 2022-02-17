@@ -31,11 +31,11 @@ func (service *UserLoginService) Login(c *gin.Context) response.Response {
 	var user model.User
 
 	if err := global.GlobalDb.Where("user_name = ?", service.UserName).First(&user).Error; err != nil {
-		return response.ParamErr("账号或密码错误", nil)
+		return response.ParamErr(-1, "账号或密码错误", nil)
 	}
 
 	if !user.CheckPassword(service.Password) {
-		return response.ParamErr("账号或密码错误", nil)
+		return response.ParamErr(-1, "账号或密码错误", nil)
 	}
 
 	var token string
@@ -44,7 +44,7 @@ func (service *UserLoginService) Login(c *gin.Context) response.Response {
 	if service.Token {
 		token, tokenExpire, err = user.MakeToken()
 		if err != nil {
-			return response.DBErr("redis err", err)
+			response.ErrWithMessage("get token err", c)
 		}
 	} else {
 		// web端设置session

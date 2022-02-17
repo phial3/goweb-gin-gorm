@@ -28,9 +28,9 @@ func CurrentUser(c *gin.Context) *model.User {
 func (u *UserApi) UserRegister(c *gin.Context) {
 	if err := c.ShouldBind(&userRegisterService); err == nil {
 		res := userRegisterService.Register()
-		c.JSON(200, res)
+		response.Result(res, c)
 	} else {
-		c.JSON(200, response.ErrorResponse(err))
+		response.ErrorResponse(200, "", err)
 	}
 }
 
@@ -38,9 +38,9 @@ func (u *UserApi) UserRegister(c *gin.Context) {
 func (u *UserApi) UserLogin(c *gin.Context) {
 	if err := c.ShouldBind(&userLoginService); err == nil {
 		res := userLoginService.Login(c)
-		c.JSON(200, res)
+		response.Result(res, c)
 	} else {
-		c.JSON(200, response.ErrorResponse(err))
+		response.ErrorResponse(200, "", err)
 	}
 }
 
@@ -48,14 +48,14 @@ func (u *UserApi) UserLogin(c *gin.Context) {
 func (u *UserApi) UserTokenRefresh(c *gin.Context) {
 	user := CurrentUser(c)
 	res := userTokenRefreshService.Refresh(c, user)
-	c.JSON(200, res)
+	response.Result(res, c)
 }
 
 // UserDetail 用户详情
 func (u *UserApi) UserDetail(c *gin.Context) {
 	user := CurrentUser(c)
 	res := model.BuildUserResponse(*user)
-	c.JSON(200, res)
+	response.Result(res, c)
 }
 
 // UserLogout 用户登出
@@ -70,8 +70,5 @@ func (u *UserApi) UserLogout(c *gin.Context) {
 		s.Clear()
 		s.Save()
 	}
-	c.JSON(200, response.Response{
-		Code: 0,
-		Msg:  "登出成功",
-	})
+	response.Ok(c)
 }

@@ -3,12 +3,12 @@ package middleware
 import (
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
+	"goweb-gin-gorm/response"
 )
 
 import (
 	"goweb-gin-gorm/cache"
 	"goweb-gin-gorm/model"
-	"goweb-gin-gorm/response"
 )
 
 // CurrentUser 获取登录用户
@@ -41,8 +41,7 @@ func AuthRequired() gin.HandlerFunc {
 				return
 			}
 		}
-
-		c.JSON(200, response.CheckLogin())
+		response.OkWithMessage("未登录", c)
 		c.Abort()
 	}
 }

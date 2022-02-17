@@ -1,9 +1,12 @@
 package util
 
 import (
+	"fmt"
 	"go.uber.org/zap"
 	"math/rand"
 	"os"
+	"reflect"
+	"strings"
 	"time"
 )
 
@@ -44,4 +47,24 @@ func CreateDir(dirs ...string) (err error) {
 		}
 	}
 	return err
+}
+
+// 利用反射将结构体转化为map
+func StructToMap(obj interface{}) map[string]interface{} {
+	obj1 := reflect.TypeOf(obj)
+	obj2 := reflect.ValueOf(obj)
+
+	var data = make(map[string]interface{})
+	for i := 0; i < obj1.NumField(); i++ {
+		if obj1.Field(i).Tag.Get("mapstructure") != "" {
+			data[obj1.Field(i).Tag.Get("mapstructure")] = obj2.Field(i).Interface()
+		} else {
+			data[obj1.Field(i).Name] = obj2.Field(i).Interface()
+		}
+	}
+	return data
+}
+
+func ArrayToString(array []interface{}) string {
+	return strings.Replace(strings.Trim(fmt.Sprint(array), "[]"), " ", ",", -1)
 }

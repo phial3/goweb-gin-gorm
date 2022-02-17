@@ -3,6 +3,7 @@ module goweb-gin-gorm
 go 1.17
 
 require (
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/fsnotify/fsnotify v1.5.1
 	github.com/fvbock/endless v0.0.0-20170109170031-447134032cb6
 	github.com/gin-contrib/cors v1.3.1
@@ -11,6 +12,7 @@ require (
 	github.com/go-redis/redis/v8 v8.11.4
 	github.com/lestrrat-go/file-rotatelogs v2.4.0+incompatible
 	github.com/robfig/cron/v3 v3.0.1
+	github.com/satori/go.uuid v1.2.0
 	github.com/songzhibin97/gkit v1.1.5
 	github.com/spf13/viper v1.10.1
 	go.uber.org/zap v1.21.0

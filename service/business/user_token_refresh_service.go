@@ -17,7 +17,7 @@ type UserTokenRefreshService struct {
 func (service *UserTokenRefreshService) Refresh(c *gin.Context, user *model.User) response.Response {
 	token, tokenExpire, err := user.MakeToken()
 	if err != nil {
-		return response.DBErr("redis err", err)
+		response.ErrWithMessage("refresh token err", c)
 	}
 	data := model.BuildUser(*user)
 	data.Token = token

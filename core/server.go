@@ -36,7 +36,6 @@ func RunServer() {
 	address := fmt.Sprintf(":%d", global.GlobalConfig.System.Port)
 
 	s := initServer(address, router)
-	// 保证文本顺序输出
 	// In order to ensure that the text order output can be deleted
 	time.Sleep(10 * time.Microsecond)
 	global.GlobalLog.Info("server run success on ", zap.String("address", address))

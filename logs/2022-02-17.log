@@ -1,0 +1,9 @@
+[goweb-demo]2022-0217 - 11:13:06.560	[34minfo[0m	/Users/gaoyanfei3/GolandProjects/goweb-gin-gorm/initialize/router.go:41	router register success!
+[goweb-demo]2022-0217 - 11:13:06.561	[34minfo[0m	/Users/gaoyanfei3/GolandProjects/goweb-gin-gorm/core/server.go:42	server run success on 	{"address": ":8890"}
+[goweb-demo]2022-0217 - 11:13:11.164	[31merror[0m	/Users/gaoyanfei3/GolandProjects/goweb-gin-gorm/core/server.go:43	accept tcp [::]:8890: use of closed network connection
+[goweb-demo]2022-0217 - 11:20:50.466	[34minfo[0m	/Users/gaoyanfei3/GolandProjects/goweb-gin-gorm/initialize/router.go:40	router register success!
+[goweb-demo]2022-0217 - 11:20:50.467	[34minfo[0m	/Users/gaoyanfei3/GolandProjects/goweb-gin-gorm/core/server.go:42	server run success on 	{"address": ":8890"}
+[goweb-demo]2022-0217 - 11:20:59.182	[31merror[0m	/Users/gaoyanfei3/GolandProjects/goweb-gin-gorm/core/server.go:43	accept tcp [::]:8890: use of closed network connection
+[goweb-demo]2022-0217 - 11:29:00.667	[34minfo[0m	/Users/gaoyanfei3/GolandProjects/goweb-gin-gorm/initialize/router.go:40	router register success!
+[goweb-demo]2022-0217 - 11:29:00.667	[34minfo[0m	/Users/gaoyanfei3/GolandProjects/goweb-gin-gorm/core/server.go:41	server run success on 	{"address": ":8890"}
+[goweb-demo]2022-0217 - 11:29:09.035	[31merror[0m	/Users/gaoyanfei3/GolandProjects/goweb-gin-gorm/core/server.go:42	accept tcp [::]:8890: use of closed network connection

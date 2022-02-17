@@ -21,8 +21,8 @@ var (
 	GlobalRedis *redis.Client
 
 	GlobalLog                *zap.Logger
-	GlobalTimer              timer.Timer = timer.NewTimerTask()
-	GlobalConcurrencyControl             = &singleflight.Group{}
+	GlobalTimer              = timer.NewTimerTask()
+	GlobalConcurrencyControl = &singleflight.Group{}
 
 	BlackCache local_cache.Cache
 )
